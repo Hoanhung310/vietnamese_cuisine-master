@@ -15,8 +15,10 @@ export class CartService {
   addToCart(food: Food): void {
     let cartItem = this.cart.items
       .find(item => item.food.id === food.id);
+    
     if (cartItem) {
       cartItem.quantity += 1;
+      cartItem.price = cartItem.quantity * cartItem.food.price; 
     } else {
       this.cart.items.push(new CartItem(food));
     }

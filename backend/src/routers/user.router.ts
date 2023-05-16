@@ -7,19 +7,26 @@ import { Router } from "express";
 import { BAD_REQUEST } from "../constants/http_status";
 const router = Router();
 
+//run this when first connect to database
+//to seed the user infomation to the database
 router.get("/seed", asyncHandler(
     async(req, res) => {
+
+      //check if there is any user in the database
       const usersCount = await UserModel.countDocuments();
+      //if yes send
       if(usersCount > 0){
         res.send("Seed is already done!");
       }
     
+      //if no take the data from data.js then inport it to the database
       await UserModel.create(sample_users);
       // const encryptedPassword = await bcrypt.hash(sample_users.password, 10);
       res.send("Seed Is Done!");
     }
 ))
 
+//login users
 router.post("/login", asyncHandler(
   async (req, res) => {
     const {email, password} = req.body;  
@@ -36,41 +43,35 @@ router.post("/login", asyncHandler(
   }
 ))
 
-//working on it
-router.get("/:id"), asyncHandler(
-        async (req, res) => {
-          // const {id} = req.body;
-          const user = await UserModel.findById(req.params.id);
-          res.send(user);
-        })
+//get user by id
+router.get("/:userId", asyncHandler(
+  async (req, res) => {
+    const user = await UserModel.findById(req.params.userId);
+    res.send(user);
+  }
+))
 
 //working on it
-router.put('/update/:id', asyncHandler(
+router.put('/update/:userId', asyncHandler(
     async (req, res) => {
         
-      const {name, email, address, id} = req.body;
-      const user = await UserModel.findOne({id});
+      const {name, email, address} = req.body;
+      const user = await UserModel.findById(req.params.userId);
     
       // const updateUser : UpdateUser = {
       //   name: name,
       //   email: email.toLowerCase(),
       //   address: address
       // }
-      await UserModel.findByIdAndUpdate({id: id},
-         {name: name, email: email, address: address}, ()=> {
+      const UpdateUser = await UserModel.findByIdAndUpdate(req.params.userId,
+         {name: name, email: email, address: address}, async () => {
           if (!user) {
-            return res.status(201).send({
-               status: true,
-               message: "User Account Updated Successfully!",
-            });
-          }
+            res.send("Update Successfully");
+            }
           else{
-           return res.status(500).send({
-               status: false,
-               message: "User Account Cannot Update",
-            });
+            res.status(BAD_REQUEST).send("User Account Cannot Update");
           }
-         });
+        });
     }
 ))
 

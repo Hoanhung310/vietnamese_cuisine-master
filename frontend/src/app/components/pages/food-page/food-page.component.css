@@ -105,9 +105,11 @@ button{
   padding: 1rem;
   border-radius: 10rem;
   outline: none;
+  margin-bottom: 1rem;
+  opacity: 0.6;
 }
 
 button:hover{
-  opacity: 0.9;
+  opacity: 1;
   cursor: pointer;
 }

@@ -19,6 +19,24 @@ li a{
   color: #e72929;
 }
 
+li button{
+  width: 20.5rem;
+  color: white;
+  background: #e72929;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 10rem;
+  outline: none;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+li button:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
 li a:hover{
   opacity: 0.9;
   cursor: pointer;

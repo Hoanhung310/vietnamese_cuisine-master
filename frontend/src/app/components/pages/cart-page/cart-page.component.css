@@ -115,6 +115,7 @@ li .remove-button:hover{
   text-align: center;
   opacity: 0.7;
   justify-self: center;
+  margin-bottom: 1rem;
 }
 
 .checkout a:hover{

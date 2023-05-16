@@ -24,8 +24,8 @@ export class FoodPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(){
+  addToCart() {
     this.cartService.addToCart(this.food);
-    this.router.navigateByUrl('/');
+    // this.router.navigateByUrl('/');
   }
 }
