@@ -1,0 +1,43 @@
+<app-title title="User's Orders" fontSize="1.6rem"></app-title>
+
+<ul>
+  <div>{{userName}}</div>
+  <li *ngFor="let order of orders">
+    <a routerLink="/track/{{order.id}}">
+      <!-- <div class="content">
+
+        <div class="id">
+          Order's #:  {{order.id}}
+        </div>
+        <div class="totalPrice">
+          {{order.totalPrice | currency}}
+        </div>
+        <div class="date">
+          Order On: {{order.createdAt }}
+        </div> -->
+      <div class="container">
+        <div class="content">
+          <h3>Order #:{{order.id}}</h3>
+          <div class="details">
+            <div><strong>Date:</strong> {{order.createdAt | date:'medium'}}</div>
+            <div><strong>Name:</strong> {{order.name}}</div>
+            <div><strong>Total Price:</strong> {{order.totalPrice | currency}}</div>
+            click for more info...
+            <!-- <div><strong>Address</strong> {{order.address}}</div> -->
+            <!-- <div><strong>Status</strong> {{order.status}}</div> -->
+            <!-- <div *ngIf="order.paymentId">
+              <strong>Payment ID</strong> {{order.paymentId}}
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+<div class="buttons-container">
+  <div class="buttons">
+    <button routerLink="/">
+      Go Back Home
+    </button>
+  </div>
+</div>

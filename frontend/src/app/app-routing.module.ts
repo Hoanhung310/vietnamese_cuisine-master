@@ -9,18 +9,23 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
+import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'search/:searchTerm', component: HomeComponent },
   { path: 'tag/:tag', component: HomeComponent },
-  {path:'food/:id', component:FoodPageComponent},
-  {path:'cart-page', component: CartPageComponent},
-  {path:'login', component: LoginPageComponent},
-  {path:'register', component: RegisterPageComponent},
-  {path:'checkout', component: CheckoutPageComponent, canActivate:[AuthGuard]},
-  {path:'payment', component: PaymentPageComponent, canActivate:[AuthGuard]},
-  {path:'track/:orderId', component: OrderTrackPageComponent, canActivate:[AuthGuard]},
+  { path:'food/:id', component:FoodPageComponent  },
+  { path:'cart-page', component: CartPageComponent  },
+  { path:'login', component: LoginPageComponent },
+  { path:'register', component: RegisterPageComponent },
+  { path:'checkout', component: CheckoutPageComponent, canActivate:[AuthGuard]  },
+  { path:'payment', component: PaymentPageComponent, canActivate:[AuthGuard]  },
+  { path:'track/:orderId', component: OrderTrackPageComponent, canActivate:[AuthGuard]  },
+
+  { path:'orders', component: OrdersPageComponent, canActivate:[AuthGuard]  },
+  { path:'profile', component: ProfilePageComponent, canActivate:[AuthGuard]  },
   // {path:'track/:userName', component: OrderTrackPageComponent, canActivate:[AuthGuard]},
 ];
 

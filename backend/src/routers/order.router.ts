@@ -9,6 +9,28 @@ import { Schema, Types, model } from 'mongoose';
 const router = Router();
 router.use(auth);
 
+router.get('/', asyncHandler( async (req, res) => {
+    const orders = await OrderModel.find();
+    res.send(orders);
+}))
+
+//working on it
+// router.get('/:userName', asyncHandler( async (req, res) => {
+//     const orders = await OrderModel.find({ name: req.params.userName });
+//     res.send(orders);
+// }))
+
+//working on it
+// router.get('/:userId', asyncHandler( async (req, res) => {
+//     const orders = await OrderModel.find({ id: req.params.userId });
+//     res.send(orders);
+// }))
+
+router.get('/', asyncHandler( async (req, res) => {
+    const orders = await OrderModel.find();
+    res.send(orders);
+}))
+
 router.post('/create',
 asyncHandler(async (req:any, res:any) => {
     const requestOrder = req.body;
