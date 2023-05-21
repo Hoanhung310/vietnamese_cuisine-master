@@ -8,9 +8,7 @@ ul {
   }
   
   li a {
-    /* height: 22.5rem; */
-    /* width: 20rem; */
-    border: 1px solid whitesmoke;
+    border: 1px solid lightgray;
     border-radius: 1rem;
     margin: 0.5rem;
     display: flex;

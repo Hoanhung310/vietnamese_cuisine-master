@@ -14,17 +14,16 @@ router.get('/', asyncHandler( async (req, res) => {
     res.send(orders);
 }))
 
-//working on it
-// router.get('/:userName', asyncHandler( async (req, res) => {
-//     const orders = await OrderModel.find({ name: req.params.userName });
-//     res.send(orders);
-// }))
+router.get('/:userName', asyncHandler( async (req, res) => {
+    const orders = await OrderModel.find({ name: req.params.userName });
+    res.send(orders);
+}))
 
 //working on it
-// router.get('/:userId', asyncHandler( async (req, res) => {
-//     const orders = await OrderModel.find({ id: req.params.userId });
-//     res.send(orders);
-// }))
+router.get('/:userId', asyncHandler( async (req, res) => {
+    const orders = await OrderModel.find({ id: req.params.userId });
+    res.send(orders);
+}))
 
 router.get('/', asyncHandler( async (req, res) => {
     const orders = await OrderModel.find();

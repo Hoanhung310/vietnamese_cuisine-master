@@ -11,35 +11,29 @@ import { Order } from 'src/app/shared/models/Order';
   styleUrls: ['./orders-page.component.css']
 })
 export class OrdersPageComponent {
-  orders: Order[] = [];
-  userName = "";
-  userId = "";
-
-  // constructor(private formBuilder: FormBuilder,
-  //   private userService: UserService,
-  //   private toastrService: ToastrService,
-  //   private router: Router) {
-  // }
+  orders!: Order[];
 
   constructor(private orderService: OrderService,
     private userService: UserService,
     activatedRoute: ActivatedRoute) {
     let ordersObservable: Observable<Order[]>;
-    // activatedRoute.params.subscribe((params) => {
-      ordersObservable = orderService.getAllOrders();
-      // ordersObservable = orderService.getAllOrdersByUserName(this.userName);
+    activatedRoute.params.subscribe((params) => {
+      //get all orders
+      // ordersObservable = orderService.getAllOrders();
 
-      ordersObservable.subscribe((serverOrders) => {
-        this.orders = serverOrders;
-      })
+      // ordersObservable.subscribe((serverOrders) => {
+      //   this.orders = serverOrders;
+      // })
+      //get all orders of user
+      if(params.userName){
+          ordersObservable = orderService.getAllOrdersByUserName(params.userName);
 
-    // })
+          ordersObservable.subscribe((serverOrders) => {
+          this.orders = serverOrders;
+        })
+      }
+
+    })
     
-  }
-
-  ngOnInit(): void {
-    let { name, id } = this.userService.currentUser;
-    name = this.userName;
-    id = this.userId;
   }
 }

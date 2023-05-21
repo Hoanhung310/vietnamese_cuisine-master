@@ -11,7 +11,7 @@
           <a routerLink="/">{{user.name}}</a>
           <div class="menu">
             <a routerLink="/profile">Profile</a>
-            <a routerLink="/orders">Orders</a>
+            <a routerLink="/orders/{{user.name}}">Orders</a>
             <a (click)="logout()">Logout</a>
           </div>
         </li>

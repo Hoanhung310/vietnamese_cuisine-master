@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ORDERS_URL, ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL, ORDER_PAY_URL, ORDER_TRACK_URL } from '../shared/constants/urls';
+import { ORDERS_OF_USER_URL, ORDERS_URL, ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL, ORDER_PAY_URL, ORDER_TRACK_URL } from '../shared/constants/urls';
 import { Order } from '../shared/models/Order';
 
 @Injectable({
@@ -16,10 +16,10 @@ export class OrderService {
     return this.http.get<Order[]>(ORDERS_URL);
   }
 
-  //testing
-  // getAllOrdersByUserName(userName: string): Observable<Order[]> {
-  //   return this.http.get<Order[]>(ORDERS_URL + userName);
-  // }
+  // testing
+  getAllOrdersByUserName(userName: string): Observable<Order[]> {
+    return this.http.get<Order[]>(ORDERS_OF_USER_URL + userName);
+  }
 
   // testing
   // getAllOrdersByUserId(userId: number): Observable<Order[]> {
