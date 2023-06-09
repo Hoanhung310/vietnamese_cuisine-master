@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/shared/models/Cart';
 import { CartItem } from 'src/app/shared/models/CartItem';
+import { Food } from 'src/app/shared/models/Food';
 
 @Component({
   selector: 'app-cart-page',
@@ -28,4 +29,12 @@ export class CartPageComponent implements OnInit {
     this.cartService.changeQuantity(cartItem.food.id, quantity);
   }
 
+
+  onAddQuantity(food: Food): void{
+    this.cartService.addToCart(food);
+  }
+
+  onRemoveQuantity(food: Food): void{
+    this.cartService.removeQuantity(food);
+  }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { IUserUpdate } from 'src/app/shared/interfaces/IUserUpdate';
 
 @Component({
   selector: 'app-profile-page',
@@ -11,6 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfilePageComponent {
   profileForm!: FormGroup;
+  isSubmitted = false;
+  returnUrl = '';
+
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private toastrService: ToastrService,
@@ -28,5 +32,21 @@ export class ProfilePageComponent {
 
   get fc() {
     return this.profileForm.controls;
+  }
+
+  submit(){
+    this.isSubmitted = true;
+    if(this.profileForm.invalid) return;
+
+    const fv= this.profileForm.value;
+    const user :IUserUpdate = {
+      name: fv.name,
+      email: fv.email,
+      address: fv.address
+    };
+
+    this.userService.update(user).subscribe(_ => {
+      this.router.navigateByUrl(this.returnUrl);
+    })
   }
 }

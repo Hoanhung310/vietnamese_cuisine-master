@@ -15,8 +15,8 @@
         {{cartItem.food.name}}
       </a>
     </div>
-    <div>
-      <select #quantitySelect
+    <div class="quantity-control">
+      <!-- <select #quantitySelect
       [value]="cartItem.quantity"
       (change)="changeQuantity(cartItem, quantitySelect.value)">
       <option>1</option>
@@ -24,7 +24,11 @@
       <option>3</option>
       <option>4</option>
       <option>5</option>
-    </select>
+    </select> -->
+
+    <button (click)="onRemoveQuantity(cartItem.food)">-</button>
+      <span> {{ cartItem.quantity }} </span>
+    <button (click)="onAddQuantity(cartItem.food)">+</button>
     </div>
     <div>
       {{cartItem.price | currency}}

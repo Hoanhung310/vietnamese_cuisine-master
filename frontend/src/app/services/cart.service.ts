@@ -26,6 +26,21 @@ export class CartService {
     this.setCartToLocalStorage();
   }
 
+  removeQuantity(food: Food): void{
+    let cartItem = this.cart.items
+      .find(item => item.food.id === food.id);
+    
+    if (cartItem) {
+      cartItem.quantity -= 1;
+      cartItem.price = cartItem.quantity * cartItem.food.price; 
+      if(cartItem.quantity === 0) {
+        this.removeFromCart(cartItem.food.id);
+      }
+    } 
+    
+    this.setCartToLocalStorage();
+  }
+
   removeFromCart(foodId: string): void {
     this.cart.items = this.cart.items
       .filter(item => item.food.id != foodId);
