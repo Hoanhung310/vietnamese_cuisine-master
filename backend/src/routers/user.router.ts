@@ -52,28 +52,26 @@ router.get("/:userId", asyncHandler(
 ))
 
 //working on it
-router.put('/update/:userId', asyncHandler(
-    async (req, res) => {
-        
-      const {name, email, address} = req.body;
-      const user = await UserModel.findById(req.params.userId);
-    
-      // const updateUser : UpdateUser = {
-      //   name: name,
-      //   email: email.toLowerCase(),
-      //   address: address
-      // }
-      const UpdateUser = await UserModel.findByIdAndUpdate(req.params.userId,
-         {name: name, email: email, address: address}, async () => {
-          if (!user) {
-            res.send("Update Successfully");
-            }
-          else{
-            res.status(BAD_REQUEST).send("User Account Cannot Update");
-          }
-        });
-    }
-))
+// router.post('/update', asyncHandler(
+//     async (req, res) => {
+//         console.log('req', req.body)
+//       const {name, email, address, userId} = req.body;
+//       const user = await UserModel.findById(req.body.userId);
+//     console.log('user',user);
+//       // const updateUser : UpdateUser = {
+//       //   name: name,
+//       //   email: email.toLowerCase(),
+//       //   address: address
+//       // }
+//       const updatedUser = await UserModel.find(user?._id,
+//          {name: name, email: email, address: address},function(err: any, result: any){
+//           console.log("result", result);
+//           console.log("err",err);
+         
+//          });
+//          res.send(updatedUser);
+//     }
+// ))
 
 router.post('/register', asyncHandler(
     async (req, res) => {
