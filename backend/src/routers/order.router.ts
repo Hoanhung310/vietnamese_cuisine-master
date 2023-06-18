@@ -30,6 +30,7 @@ router.get('/', asyncHandler( async (req, res) => {
     res.send(orders);
 }))
 
+var id = 0;
 router.post('/create',
 asyncHandler(async (req:any, res:any) => {
     const requestOrder = req.body;
@@ -46,20 +47,23 @@ asyncHandler(async (req:any, res:any) => {
 
     const newOrder = new OrderModel({...requestOrder,user: req.user.id});
     await newOrder.save();
+    // console.log("new order", newOrder);
     res.send(newOrder);
 })
 )
 
 
-router.get('/newOrderForCurrentUser', asyncHandler( async (req:any,res ) => {
-    const order= await getNewOrderForCurrentUser(req);
+router.get('/newOrderForCurrentUser/:id', asyncHandler( async (req: any,res ) => {
+    const order= await getNewOrderForCurrentUser(req.params.id);
     if(order) res.send(order);
     else res.status(BAD_REQUEST).send();
 }))
 
 router.post('/pay', asyncHandler( async (req:any, res) => {
     const {paymentId} = req.body;
-    const order = await getNewOrderForCurrentUser(req);
+    console.log('req',req.body);
+    const order = await getNewOrderForCurrentUser(req.body._id);
+    console.log('order',order)
     if(!order){
         res.status(BAD_REQUEST).send('Order Not Found!');
         return;
@@ -83,7 +87,7 @@ router.get('/track/:userName', asyncHandler( async (req, res) => {
 }))
 
 async function getNewOrderForCurrentUser(req: any) {
-    return await OrderModel.findOne({ user: req.user.id, status: OrderStatus.NEW });
+    return await OrderModel.findOne({ _id: req, status: OrderStatus.NEW });
 }
 
 export default router;

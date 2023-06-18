@@ -30,12 +30,25 @@ export class OrderService {
     return this.http.post<Order>(ORDER_CREATE_URL, order);
   }
 
-  getNewOrderForCurrentUser():Observable<Order>{
-    return this.http.get<Order>(ORDER_NEW_FOR_CURRENT_USER_URL);
+  // static _orderId:number = 0;
+  _orderId:number = 0;
+
+  // public static set orderId(id: number) {
+  setOrderId(id: number) {
+    this._orderId = id;
+  }
+
+  // public static get orderId(): number {
+  getOrderId(): number {
+    return this._orderId;
+  }
+
+  getNewOrderForCurrentUser(orderId: number):Observable<Order>{
+    return this.http.get<Order>(ORDER_NEW_FOR_CURRENT_USER_URL + orderId);
   }
 
   pay(order:Order):Observable<string>{
-    return this.http.post<string>(ORDER_PAY_URL,order);
+    return this.http.post<string>(ORDER_PAY_URL, order);
   }
 
   trackOrderById(id:number): Observable<Order>{

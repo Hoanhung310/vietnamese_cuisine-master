@@ -12,12 +12,14 @@ export class PaymentPageComponent implements OnInit {
 
   order:Order = new Order();
   constructor(orderService: OrderService, router: Router) {
-      orderService.getNewOrderForCurrentUser().subscribe({
+    let orderId = orderService.getOrderId();
+    console.log('getorderid',orderId);
+      orderService.getNewOrderForCurrentUser(orderId).subscribe({
         next: (order) => {
           this.order = order;
         },
         error:() => {
-          router.navigateByUrl('/chekcout');
+          router.navigateByUrl('/checkout');
         }
       })
 

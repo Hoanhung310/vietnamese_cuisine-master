@@ -12,8 +12,8 @@ import { IUserUpdate } from 'src/app/shared/interfaces/IUserUpdate';
 })
 export class ProfilePageComponent {
   profileForm!: FormGroup;
-  isSubmitted = false;
-  returnUrl = '';
+  // isSubmitted = false;
+  // returnUrl = '';
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -27,26 +27,30 @@ export class ProfilePageComponent {
       name: [name, Validators.required],
       email: [email, Validators.required],
       address: [address, Validators.required]
+      // name: [name],
+      // email: [email],
+      // address: [address]
     });
   }
 
-  get fc() {
+  get pfc() {
     return this.profileForm.controls;
   }
 
   submit(){
-    this.isSubmitted = true;
+    //this.isSubmitted = true;
     if(this.profileForm.invalid) return;
 
     const fv= this.profileForm.value;
     const user :IUserUpdate = {
       name: fv.name,
       email: fv.email,
-      address: fv.address
+      address: fv.address,
+      userId: this.userService.currentUser.id
     };
 
     this.userService.update(user).subscribe(_ => {
-      this.router.navigateByUrl(this.returnUrl);
+      //this.router.navigateByUrl(this.returnUrl);
     })
   }
 }

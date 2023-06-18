@@ -39,7 +39,7 @@ export interface Order{
     status: OrderStatus;
     user: Types.ObjectId;
     createdAt: Date;
-    updatedAt: Date
+    updatedAt: Date;
   }
 
   const orderSchema = new Schema<Order>({

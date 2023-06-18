@@ -33,7 +33,7 @@ export class CartService {
     if (cartItem) {
       cartItem.quantity -= 1;
       cartItem.price = cartItem.quantity * cartItem.food.price; 
-      if(cartItem.quantity === 0) {
+      if(cartItem.quantity == 0) {
         this.removeFromCart(cartItem.food.id);
       }
     } 

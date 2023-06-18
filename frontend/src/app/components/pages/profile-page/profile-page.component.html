@@ -1,17 +1,22 @@
 <div class="container">
     <div class="content">
       <app-title title="Profile Form" fontSize="1.6rem"></app-title>
-      <form [formGroup]="profileForm" (ngSubmit)="submit()">
-        <text-input [control]="fc.name" label="Name" [showErrorsWhen]="isSubmitted"></text-input>
+      <!-- <form [formGroup]="profileForm" (ngSubmit)="submit()"> -->
+      <form [formGroup]="profileForm">
+        <!-- <text-input [control]="fc.name" label="Name" [showErrorsWhen]="isSubmitted"></text-input>
         <text-input [control]="fc.email" type="email" label="Email" [showErrorsWhen]="isSubmitted"></text-input>
-        <text-input [control]="fc.address" label="Address" [showErrorsWhen]="isSubmitted"></text-input>
-      
+        <text-input [control]="fc.address" label="Address" [showErrorsWhen]="isSubmitted"></text-input> -->
+
+        
+        <text-input [control]="pfc.name" label="Name"></text-input>
+        <text-input [control]="pfc.email" type="email" label="Email"></text-input>
+        <text-input [control]="pfc.address" label="Address"></text-input>
         <!-- <default-button text="Update"></default-button> -->
       </form>
     </div>
     <div class="buttons-container">
       <div class="buttons">
-        <!-- <button routerLink="/">
+        <!-- <button  (click)="submit()">
           Update User
         </button> -->
         <button routerLink="/">
@@ -19,5 +24,4 @@
         </button>
       </div>
     </div>
-  </div>
-  
+  </div> 

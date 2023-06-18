@@ -14,6 +14,7 @@ declare var paypal: any;
   styleUrls: ['./paypal-button.component.css']
 })
 export class PaypalButtonComponent implements OnInit {
+  //make it required
   @Input()
   order!:Order;
 

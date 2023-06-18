@@ -62,7 +62,7 @@ export class UserService {
   }
 
   update(userUpdate:IUserUpdate):Observable<User>{
-    return this.http.put<User>(USER_UPDATE_URL, userUpdate).pipe(
+    return this.http.post<User>(USER_UPDATE_URL, userUpdate).pipe(
       tap({
         next: (user) =>{
           this.setUserToLocalStorage(user);

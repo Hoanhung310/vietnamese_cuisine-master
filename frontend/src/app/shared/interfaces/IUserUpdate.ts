@@ -2,4 +2,5 @@ export interface IUserUpdate{
     name : string;
     email : string;
     address : string;
+    userId: string;
   }
